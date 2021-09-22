@@ -9,7 +9,7 @@ jobs:
   build-lint-test:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repo
+      - name: Checkout repo
         uses: actions/checkout@v2
       - name: Install dependencies
         run: |
@@ -17,3 +17,9 @@ jobs:
           python -m pip install --upgrade setuptools
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+      - name: Lint code
+        run: |
+          pylint src tests
+      - name: Run tests
+        run: |
+          pytest
