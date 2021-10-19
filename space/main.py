@@ -31,10 +31,20 @@ class VectorMath:
     @staticmethod
     def get_point_closest_to_origin(point_1, point_2):
         """
-        Returns the point that is closest to 0,0,0
+        Returns the point out of two given that is closest to 0,0,0
         """
         origin = Point(0, 0, 0)
         point_1_dist_to_origin = VectorMath.calc_distance_between_pts(origin, point_1)
         point_2_dist_to_origin = VectorMath.calc_distance_between_pts(origin, point_2)
         point_1_closer = point_1_dist_to_origin < point_2_dist_to_origin
         return point_1 if point_1_closer else point_2
+
+    @staticmethod
+    def get_closest_point_from_list(list_of_points):
+        """
+        Returns the point in a given list that is closest to 0,0,0
+        """
+        closest = list_of_points[0]
+        for point in list_of_points:
+            closest = VectorMath.get_point_closest_to_origin(closest, point)
+        return closest
